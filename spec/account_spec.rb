@@ -15,7 +15,7 @@ describe Account do
   it 'can receive a withdrawal of money' do
     account = Account.new
     account.deposit(1000)
-    account.withdrawal(500)
+    account.withdraw(500)
     expect(account.balance).to eq 500
   end
 
@@ -24,11 +24,15 @@ describe Account do
     expect(account.transaction_history).to eq []
   end
 
-  it 'stores the date and amount of a deposit in the transaction_history' do
+  it 'stores the details of a deposit' do
     account = Account.new
     account.deposit(1000)
-    expect(account.transaction_history).to eq [{ :date => Account::CURRENT_DATE, :credit => 1000 } ]
+    expect(account.transaction_history).to eq [{ :date => Account::CURRENT_DATE, :credit => 1000, :debit => "", :balance => 1000} ]
   end
 
-
+  it 'stores the details of a withdrawal' do
+    account = Account.new
+    account.withdraw(500)
+    expect(account.transaction_history).to eq [{ :date => Account::CURRENT_DATE, :credit => "", :debit => 500, :balance => -500} ]
+  end
 end
