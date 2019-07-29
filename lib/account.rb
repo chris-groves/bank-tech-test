@@ -10,7 +10,7 @@ class Account
 
   def deposit(amount)
     @balance += amount
-    @transaction_history.push('29/07/2019')
+    @transaction_history << { :date => CURRENT_DATE, :credit => amount }
   end
 
   def withdrawal(amount)

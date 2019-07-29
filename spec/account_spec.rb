@@ -24,11 +24,11 @@ describe Account do
     expect(account.transaction_history).to eq []
   end
 
-  it 'stores the date of a deposit in the transaction history' do
+  it 'stores the date and amount of a deposit in the transaction_history' do
     account = Account.new
-    date = Time.now.strftime("%d/%m/%Y")
     account.deposit(1000)
-    expect(account.transaction_history).to eq [date]
+    expect(account.transaction_history).to eq [{ :date => Account::CURRENT_DATE, :credit => 1000 } ]
   end
+
 
 end
