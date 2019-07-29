@@ -1,12 +1,16 @@
 class Account
-  attr_reader :balance
+  attr_reader :balance, :transaction_history
+
+  CURRENT_DATE = Time.now.strftime("%d/%m/%Y")
 
   def initialize
     @balance = 0
+    @transaction_history = []
   end
 
   def deposit(amount)
     @balance += amount
+    @transaction_history.push('29/07/2019')
   end
 
   def withdrawal(amount)

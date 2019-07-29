@@ -19,4 +19,16 @@ describe Account do
     expect(account.balance).to eq 500
   end
 
+  it 'initializes with an empty transaction history' do
+    account = Account.new
+    expect(account.transaction_history).to eq []
+  end
+
+  it 'stores the date of a deposit in the transaction history' do
+    account = Account.new
+    date = Time.now.strftime("%d/%m/%Y")
+    account.deposit(1000)
+    expect(account.transaction_history).to eq [date]
+  end
+
 end
