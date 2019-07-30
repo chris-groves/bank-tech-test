@@ -2,6 +2,7 @@ class Account
   attr_reader :balance, :transaction_history, :statement_headings
 
   CURRENT_DATE = Time.now.strftime("%d/%m/%Y")
+  STATEMENT_HEADINGS = "date || credit || debit || balance"
 
   def initialize
     @balance = 0
@@ -10,27 +11,16 @@ class Account
 
   def deposit(amount)
     @balance += amount
-    @transaction_history << { :date => CURRENT_DATE,
-      :credit => amount, :debit => "", :balance => @balance }
+    @transaction_history << "#{CURRENT_DATE} || #{amount} || || #{@balance}"
   end
 
   def withdraw(amount)
     @balance -= amount
-    @transaction_history << { :date => CURRENT_DATE, :credit => "", :debit => amount, :balance => @balance }
+    @transaction_history << "#{CURRENT_DATE} || || #{amount} || #{@balance}"
   end
 
   def print_statement
-    @statement_headings = {
-       :date => "date",
-       :credit => "credit",
-       :debit => "debit",
-       :balance => "balance"
-     }
-
-    @statement_headings[:date] + ' || ' + @statement_headings[:credit] +
-  ' || ' + @statement_headings[:debit] + ' || ' + @statement_headings[:balance]
-end
-
-
+    STATEMENT_HEADINGS + "\n" + @transaction_history.join
+  end
 
 end
