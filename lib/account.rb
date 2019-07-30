@@ -10,12 +10,17 @@ class Account
 
   def deposit(amount)
     @balance += amount
-    @transaction_history << { :date => CURRENT_DATE, :credit => amount, :debit => "", :balance => @balance }
+    @transaction_history << { :date => CURRENT_DATE,
+      :credit => amount, :debit => "", :balance => @balance }
   end
 
   def withdraw(amount)
     @balance -= amount
     @transaction_history << { :date => CURRENT_DATE, :credit => "", :debit => amount, :balance => @balance }
+  end
+
+  def print_transaction_history
+    @transaction_history
   end
 
 

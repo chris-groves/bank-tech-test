@@ -35,4 +35,10 @@ describe Account do
     account.withdraw(500)
     expect(account.transaction_history).to eq [{ :date => Account::CURRENT_DATE, :credit => "", :debit => 500, :balance => -500} ]
   end
+
+  it 'prints out a transaction_history' do
+    account = Account.new
+    account.deposit(1000)
+    expect(account.print_transaction_history).to eq([{ :date => Account::CURRENT_DATE, :credit => 1000, :debit => "", :balance => 1000 }])
+  end
 end
