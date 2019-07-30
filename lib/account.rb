@@ -19,9 +19,16 @@ class Account
     @transaction_history << { :date => CURRENT_DATE, :credit => "", :debit => amount, :balance => @balance }
   end
 
-  def print_transaction_history
-    @transaction_history
-  end
+  def print_statement
+    @statement_headings = {
+      :date => "date",
+      :credit => "credit",
+      :debit => "debit",
+      :balance => "balance"
+    }
 
+    @statement_headings[:date] + ' || ' + @statement_headings[:credit] +
+    ' || ' + @statement_headings[:debit] + ' || ' + @statement_headings[:balance]
+  end
 
 end
