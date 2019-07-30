@@ -1,5 +1,5 @@
 class Account
-  attr_reader :balance, :transaction_history
+  attr_reader :balance, :transaction_history, :statement_headings
 
   CURRENT_DATE = Time.now.strftime("%d/%m/%Y")
 
@@ -21,14 +21,16 @@ class Account
 
   def print_statement
     @statement_headings = {
-      :date => "date",
-      :credit => "credit",
-      :debit => "debit",
-      :balance => "balance"
-    }
+       :date => "date",
+       :credit => "credit",
+       :debit => "debit",
+       :balance => "balance"
+     }
 
     @statement_headings[:date] + ' || ' + @statement_headings[:credit] +
-    ' || ' + @statement_headings[:debit] + ' || ' + @statement_headings[:balance]
-  end
+  ' || ' + @statement_headings[:debit] + ' || ' + @statement_headings[:balance]
+end
+
+
 
 end

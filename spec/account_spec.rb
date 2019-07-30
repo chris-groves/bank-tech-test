@@ -36,8 +36,8 @@ describe Account do
     expect(account.transaction_history).to eq [{ :date => Account::CURRENT_DATE, :credit => "", :debit => 500, :balance => -500} ]
   end
 
-  it 'prints out statement with headings' do
+  it 'prints out statement headings' do
     account = Account.new
-    expect(account.print_statement).to eq("date || credit || debit || balance")
+    expect(account.print_statement).to eq "date || credit || debit || balance"
   end
 end
