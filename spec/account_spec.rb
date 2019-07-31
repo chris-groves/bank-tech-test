@@ -8,7 +8,6 @@ describe Account do
       expect(account.balance).to eq 0
     end
 
-
     it 'can receive a deposit of money' do
       account = Account.new
       account.deposit(1000)
@@ -42,11 +41,18 @@ describe Account do
     end
   end
 
-  describe '#print_statement' do
-    it 'prints out statement with headings & a transaction' do
+  describe '#statement_headings' do
+    it 'prints the statements headings' do
       account = Account.new
-      account.deposit(1000)
-      expect(account.print_statement).to eq "date || credit || debit || balance" + "\n" + "#{Account::CURRENT_DATE} || 1000 || || 1000"
+      expect { account.statement_headings}.to output("date || credit || debit || balance\n").to_stdout
     end
   end
+
+  # describe '#print_statement' do
+  #   it 'prints out statement with headings & a transaction' do
+  #     account = Account.new
+  #     account.deposit(1000)
+  #     expect(account.print_statement).to eq "date || credit || debit || balance" + "\n" + "#{Account::CURRENT_DATE} || 1000 || || 1000"
+  #   end
+  # end
 end
