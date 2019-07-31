@@ -10,12 +10,12 @@ class Account
 
   def deposit(amount)
     @balance += amount
-    @transaction_history << "#{CURRENT_DATE} || #{'%.2f' % amount} || || #{'%.2f' % @balance}"
+    @transaction_history.prepend("#{CURRENT_DATE} || #{'%.2f' % amount} || || #{'%.2f' % @balance}")
   end
 
   def withdraw(amount)
     @balance -= amount
-    @transaction_history << "#{CURRENT_DATE} || || #{'%.2f' % amount} || #{'%.2f' % @balance}"
+    @transaction_history.prepend("#{CURRENT_DATE} || || #{'%.2f' % amount} || #{'%.2f' % @balance}")
   end
 
   def statement_headings
