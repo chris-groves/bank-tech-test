@@ -11,11 +11,16 @@ class Account
   def deposit(amount)
     @balance += amount
     @transaction_history.prepend("#{CURRENT_DATE} || #{'%.2f' % amount} || || #{'%.2f' % @balance}")
+
   end
 
   def withdraw(amount)
-    @balance -= amount
-    @transaction_history.prepend("#{CURRENT_DATE} || || #{'%.2f' % amount} || #{'%.2f' % @balance}")
+    if @balance - amount < 0
+      raise "Error: transaction will take the balance below zero"
+    else
+      @balance -= amount
+      @transaction_history.prepend("#{CURRENT_DATE} || || #{'%.2f' % amount} || #{'%.2f' % @balance}")
+    end
   end
 
   def statement_headings

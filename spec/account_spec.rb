@@ -36,8 +36,9 @@ describe Account do
 
     it 'stores the details of a withdrawal' do
       account = Account.new
+      account.deposit(500)
       account.withdraw(500)
-      expect(account.transaction_history).to eq ["#{Account::CURRENT_DATE} || || 500.00 || -500.00"]
+      expect(account.transaction_history).to eq ["#{Account::CURRENT_DATE} || || 500.00 || 0.00", "#{Account::CURRENT_DATE} || 500.00 || || 500.00"]
     end
   end
 
@@ -62,5 +63,11 @@ describe Account do
       account.withdraw(500)
     expect { account.print_statement }.to output("date || credit || debit || balance\n31/07/2019 || || 500.00 || 2500.00\n31/07/2019 || 2000.00 || || 3000.00\n31/07/2019 || 1000.00 || || 1000.00\n").to_stdout
     end
+  end
+
+  it 'throws an error if a withdrawal will take the balance below 0' do
+     account = Account.new
+     message = "Error: transaction will take the balance below zero"
+     expect { account.withdraw(100) }.to raise_error(message)
   end
 end
